@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,69 +10,125 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #1e1e1e; /* Dark background for night mode */
+            color: #f4f4f4; /* Light text color */
         }
+
         header {
-            background: #007bff;
+            background: #7b4c91; /* Purple color for header */
             color: white;
             padding: 10px 20px;
             text-align: center;
         }
+
         h1 {
             margin: 0;
         }
+
+        .about-me {
+            text-align: center; /* Center text */
+            margin: 10px auto; /* Center and add space */
+            font-size: 1.1em; /* Slightly larger font size */
+            color: #cda0e2; /* Color to match section headers */
+        }
+
+        .container {
+            display: flex; /* Use flexbox layout */
+            margin: 20px; /* Margin for the container */
+        }
+
+        .column {
+            flex: 1; /* Each column takes equal space */
+            margin-right: 20px; /* Space between columns */
+        }
+
+        .column:last-child {
+            margin-right: 0; /* Remove margin from the last column */
+        }
+
         section {
-            margin: 20px;
             padding: 20px;
-            background: white;
+            background: #2a2a2a; /* Slightly lighter background for sections */
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px; /* Space between boxes vertically */
         }
+
         h2 {
-            color: #007bff;
+            color: #cda0e2; /* Pastel purple for section headers */
         }
+
         footer {
             text-align: center;
             margin: 20px;
-            color: #777;
+            color: #b0b0b0; /* Lighter grey for footer text */
+        }
+
+        a {
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Make link color inherit from parent element */
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Welcome to My Bio!</h1>
+        <h1>Stuff I like/wanna share :)</h1>
     </header>
-    <section>
+
+    <div class="about-me">
         <h2>About Me</h2>
-        <p>Hello! I'm [Your Name], a computer science student who loves gaming and music. This site showcases my favorite things!</p>
-    </section>
-    <section>
-        <h2>Favorite Games</h2>
-        <ul>
-            <li>Game 1</li>
-            <li>Game 2</li>
-            <li>Game 3</li>
-        </ul>
-    </section>
-    <section>
-        <h2>My Music</h2>
-        <p>Here are some of my favorite tracks:</p>
-        <ul>
-            <li>Song 1 - Artist</li>
-            <li>Song 2 - Artist</li>
-            <li>Song 3 - Artist</li>
-        </ul>
-    </section>
-    <section>
-        <h2>Tournaments Won</h2>
-        <ul>
-            <li>Tournament 1</li>
-            <li>Tournament 2</li>
-        </ul>
-    </section>
+        <p>Not that anyone cares, but I'm Inuke <i>(pronounced "ee-noo-kay", NOT "I nuke")</i>. I'm a 21-year-old
+            student studying computer science, and I love a lot of varied things. Hence, this page exists.</p>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <section>
+                <h2>My Songs <u>Hall of Fame</u> 🔥</h2>
+                <ul>
+                    <li>Venice Bitch - Lana Del Rey<a href="https://www.youtube.com/watch?v=Izc3W3yOW0M" target="_blank">💿</a></li>
+                    <li>The greatest - Lana Del Rey<a href="https://www.youtube.com/watch?v=Ndo8r_Hg_lg" target="_blank">💿</a></li>
+                    <li>Bohemian Rhapsody - Queen<a href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank">💿</a></li>
+                    <li>everything i wanted - Billie Eilish<a href="https://www.youtube.com/watch?v=EgBJmlPo8Xw" target="_blank">💿</a></li>
+                    <li>Let It Happen - Tame Impala<a href="https://www.youtube.com/watch?v=NMRhx71bGo4" target="_blank">💿</a></li>
+                    <li>Estranged - Guns N' Roses<a href="https://www.youtube.com/watch?v=8VgRL8Htv7k" target="_blank">💿</a></li>
+                    <li>Wind of Change - Scorpions<a href="https://www.youtube.com/watch?v=n4RjJKxsamQ" target="_blank">💿</a></li>
+                    <li>Stairway To Heaven - Led Zeppelin<a href="https://www.youtube.com/watch?v=QkF3oxziUI4" target="_blank">💿</a></li>
+                </ul>
+                <p>this list may change or receive additions over time :)</p>
+            </section>
+            <section>
+                <h2>meow meow</h2>
+                <p>meow meow</p>
+                <ul>
+                    <li>meow meow</li>
+                    <li>meow meow</li>
+                </ul>
+            </section>
+        </div>
+        <div class="column">
+            <section>
+                <h2>meow meow</h2>
+                <ul>
+                    <li>meow meow</li>
+                    <li>meow meow</li>
+                    <li>meow meow</li>
+                </ul>
+            </section>
+            <section>
+                <h2>meow meow</h2>
+                <ul>
+                    <li>meow meow</li>
+                    <li>meow meow</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+        <p>&copy; This site is forever a work in progress. Inuke. Made with 💜</p>
     </footer>
 </body>
+
 </html>
