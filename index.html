@@ -10,12 +10,15 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1e1e1e; /* Dark background for night mode */
-            color: #f4f4f4; /* Light text color */
+            background-color: #1e1e1e;
+            /* Dark background for night mode */
+            color: #f1ede8;
+            /* Light text color */
         }
 
         header {
-            background: #7b4c91; /* Purple color for header */
+            background: #7b4c91;
+            /* Purple color for header */
             color: white;
             padding: 10px 20px;
             text-align: center;
@@ -26,47 +29,86 @@
         }
 
         .about-me {
-            text-align: center; /* Center text */
-            margin: 10px auto; /* Center and add space */
-            font-size: 1.1em; /* Slightly larger font size */
-            color: #cda0e2; /* Color to match section headers */
+            text-align: center;
+            /* Center text */
+            margin: 10px auto;
+            /* Center and add space */
+            font-size: 1.1em;
+            /* Slightly larger font size */
+            color: #cda0e2;
+            /* Color to match section headers */
         }
 
         .container {
-            display: flex; /* Use flexbox layout */
-            margin: 20px; /* Margin for the container */
+            display: flex;
+            /* Use flexbox layout */
+            margin: 20px;
+            /* Margin for the container */
         }
 
         .column {
-            flex: 1; /* Each column takes equal space */
-            margin-right: 20px; /* Space between columns */
+            flex: 1;
+            /* Each column takes equal space */
+            margin-right: 20px;
+            /* Space between columns */
         }
 
         .column:last-child {
-            margin-right: 0; /* Remove margin from the last column */
+            margin-right: 0;
+            /* Remove margin from the last column */
         }
 
         section {
             padding: 20px;
-            background: #2a2a2a; /* Slightly lighter background for sections */
+            background: #2a2a2a;
+            /* Slightly lighter background for sections */
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px; /* Space between boxes vertically */
+            margin-bottom: 20px;
+            /* Space between boxes vertically */
         }
 
         h2 {
-            color: #cda0e2; /* Pastel purple for section headers */
+            color: #cda0e2;
+            /* Pastel purple for section headers */
         }
 
         footer {
             text-align: center;
             margin: 20px;
-            color: #b0b0b0; /* Lighter grey for footer text */
+            color: #b0b0b0;
+            /* Lighter grey for footer text */
         }
 
         a {
-            text-decoration: none; /* Remove underline from links */
-            color: inherit; /* Make link color inherit from parent element */
+            text-decoration: none;
+            /* Remove underline from links */
+            color: inherit;
+            /* Make link color inherit from parent element */
+        }
+
+        .clickable {
+            cursor: pointer;
+            /* Makes it look clickable */
+            color: #f1ede8;
+            /* Gives a highlight color */
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+            /* Smooth transition effect */
+        }
+
+        .clickable:hover {
+            color: #facb30;
+            /* Changes color on hover */
+        }
+
+        .description {
+            display: none;
+            /* Keeps descriptions hidden by default */
+            font-style: italic;
+            margin-left: 20px;
+            color: #b0b0b0;
+            /* Slightly faded color for contrast */
         }
     </style>
 </head>
@@ -101,10 +143,30 @@
             </section>
             <section>
                 <h2>My Gaming Accomplishments</h2>
-                <p>work in progress meow</p>
+                <p><b>CS:GO & CS2</b> <i>(7000~ hours)</i></p>
                 <ul>
-                    <li>meow meow</li>
-                    <li>meow meow</li>
+                    <li>Global Elite in both CS:GO competitive and wingman.</li>
+                    <li>19,714 Elo in Premier.</li>
+                    <li>Best game of my life: 55-4-13 K/A/D with a score of 139, including 1 ace and 5 4K's. The game was won 16-12.</li>
+                </ul>
+                <p><b>Smite</b> <i>(4000~ hours)</i></p>
+                <ul>
+                    <li>57 pentakills, 157 quadrakills, 75 godlikes.</li>
+                    <li>A decakill with Hou Yi and a septakill with Neith.</li>
+                    <li>291/319 (91%) achievements, seven of which are the hardest in the game.</li>
+                    <li>"Final Form": Kill 5 enemy with a single ability.</li>
+                    <li>Owner of the Curious Courier skin, which is only owned by 0.07% of players.</li>
+                </ul>
+                <p><b>Wynncraft</b> <i>(1,853 hours)</i></p>
+                <ul>
+                    <li>Former Strategist of ANO.</li>
+                    <li>Top 100 raid player.</li>
+                    <li>2nd place in the 19th season's Ocean Trials.</li>
+                </ul>
+                <p><b>Mobile Cookie Clicker</b> <i>(Legacy started 1450 days ago)</i></p>
+                <ul>
+                    <li>#8 on the competitive leaderboard.</li>
+                    <li>1.44*10<sup>63</sup> (1.44 vigintillion) cookies baked all time.</li>
                 </ul>
             </section>
         </div>
@@ -112,16 +174,37 @@
             <section>
                 <h2>🎥 My Top 10 favorite movies of all time :p</h2>
                 <ol>
-                    <li>Fight Club (1999) 🥇</li>
-                    <li>12 Angry Men (1957) 🥈</li>
-                    <li>Troy (2004) 🥉</li>
-                    <li>Inglourious Basterds (2009)</li>
-                    <li>Spirited Away (2001)</li>
-                    <li>Back to the Future (1985)</li>
-                    <li>Astérix et Obélix : Mission Cléopâtre (2002)</li>
-                    <li>Of Mice and Men (1992)</li>
-                    <li>The Theory of Everything (2014)</li>
-                    <li>Oscar (1967)</li>
+                    <li onclick="toggleDescription('desc1')" class="clickable">Fight Club (1999) 🥇</li>
+                    <p id="desc1" class="description">Obviously number one on many lists and widely regarded as one of the greatest movies of all time, this is my personal favorite out of all the
+                        movies I’ve watched. Despite watching it for the first time relatively late and knowing the main plot twist beforehand, I was still unprepared, and the reveal caught me off
+                        guard, as well as the final act set to the music of the Pixies. A mind-bending movie fully deserving of this first place.</p>
+                    <li onclick="toggleDescription('desc2')" class="clickable">12 Angry Men (1957) 🥈</li>
+                    <p id="desc2" class="description">I was (happily) surprised to see this movie rated this high by the public a long time after watching it for the first time. I personally watched
+                        it in high school with a top-notch English literature teacher who shared some really good movies and books with us. In short, this movie changed my life and my way of thinking.
+                        It is so intense, with many dramatic key moments, and watching this movie is such an immersive experience; you really get to be with the twelve jurors all movie long, and at
+                        one moment or another, you’re eventually going to be convinced by juror #8 (wonderfully played by Henry Fonda). 10/10 would recommend for EVERYONE to see.</p>
+                    <li onclick="toggleDescription('desc3')" class="clickable">Troy (2004) 🥉</li>
+                    <p id="desc3" class="description">Myeah… 2 hours and 43 minutes of Brad Pitt as Achilles in an epic adaptation of the Iliad and Posthomerica? Of course, I’m going to like it.
+                        Amazing acting from him, and despite the criticisms this movie has largely faced, it’s still a film I regularly watch and enjoy. Its placement on this list is purely personal,
+                        and I understand that some may not agree with it.</p>
+                    <li onclick="toggleDescription('desc4')" class="clickable">Inglourious Basterds (2009)</li>
+                    <p id="desc4" class="description">Christoph Waltz… What a performance from him... But not only him! This movie is a pure masterpiece in terms of tension, relief, tension, relief;
+                        it is so perfectly executed, and every scene is so intense. Tarantino has rightfully earned his reputation. Amazing performance from the French actress Mélanie Laurent as well.
+                    </p>
+                    <li onclick="toggleDescription('desc5')" class="clickable">Spirited Away (2001)</li>
+                    <p id="desc5" class="description">The only animated movie on this list, it’s my favorite Ghibli and a film that someone I really loved shared with me. Two hours of adventurous
+                        twists and turns, with lovely characters in Chihiro, Haku, No-Face, and Yubaba, along with all the subtexts and metaphors in this movie. In addition to that, just like the
+                        other Ghibli films, this movie doesn’t age with time; after 24 years it’s still artistically beautiful.</p>
+                    <li onclick="toggleDescription('desc6')" class="clickable">Back to the Future (1985)</li>
+                    <p id="desc6" class="description">meow meow</p>
+                    <li onclick="toggleDescription('desc7')" class="clickable">Astérix et Obélix : Mission Cléopâtre (2002)</li>
+                    <p id="desc7" class="description">meow meow</p>
+                    <li onclick="toggleDescription('desc8')" class="clickable">Of Mice and Men (1992)</li>
+                    <p id="desc8" class="description">meow meow</p>
+                    <li onclick="toggleDescription('desc9')" class="clickable">The Theory of Everything (2014)</li>
+                    <p id="desc9" class="description">meow meow</p>
+                    <li onclick="toggleDescription('desc10')" class="clickable">Oscar (1967)</li>
+                    <p id="desc10" class="description">meow meow</p>
                 </ol>
             </section>
             <section>
@@ -137,6 +220,23 @@
     <footer>
         <p>&copy; This site is forever a work in progress. Inuke. Made with 💜</p>
     </footer>
+    <script>
+        // Ensure all descriptions are hidden when the page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            let descriptions = document.querySelectorAll(".description");
+            descriptions.forEach(desc => desc.style.display = "none");
+        });
+
+        function toggleDescription(id) {
+            var desc = document.getElementById(id);
+            if (desc.style.display === "none" || desc.style.display === "") {
+                desc.style.display = "block"; // Show the description
+            } else {
+                desc.style.display = "none"; // Hide the description
+            }
+        }
+    </script>
+
 </body>
 
 </html>
