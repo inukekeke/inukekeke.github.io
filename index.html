@@ -119,12 +119,55 @@
         }
 
         .striked-text {
-            text-decoration: line-through; /* Initially strike-through the text */
-            transition: text-decoration 0.3s ease; /* Smooth transition */
+            text-decoration: line-through;
+            /* Initially strike-through the text */
+            transition: text-decoration 0.3s ease;
+            /* Smooth transition */
         }
 
         .striked-text:hover {
-            text-decoration: none; /* Remove strike-through on hover */
+            text-decoration: none;
+            /* Remove strike-through on hover */
+        }
+
+        .heptagon-container {
+            position: relative;
+            width: 400px;
+            /* Adjust this based on your image */
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heptagon {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .emoji {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            /* Adjust size of emojis */
+        }
+
+        .not-centered {
+            text-align: left;
+        }
+
+        .legend {
+            display: none;
+            position: absolute;
+            bottom: -25px;
+            right: 37%;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .sins-image:hover~.legend {
+            display: block;
         }
     </style>
 </head>
@@ -142,6 +185,18 @@
 
     <div class="container">
         <div class="column">
+            <section>
+                <p class="about-me">
+                    I'm no believer, but oh, do I sin. 🙏<br>
+                </p>
+                <div class="heptagon-container about-me">
+                    <img src="7ds.png" alt="Seven Deadly Sins" style="width: 400px; height: auto; border-radius: 8px; margin-top: 10px;" class="sins-image">
+                    <span class="small-text legend">
+                        🥸: Envy | 😎: Pride | 🤑: Greed | 🥰: Lust | 🦥: Sloth | 😡: Wrath | 🍔: Gluttony
+                    </span>
+                </div>
+            </section>
+
             <section>
                 <h2>Personnal Songs <u>Hall of Fame</u> 🔥</h2>
                 <ul>
@@ -255,7 +310,7 @@
                     experience character development throughout the series; you will love them and hate them at least once (They're also ALL so hot 😳). It is a Shōnen but it deals with more serious
                     topics, such as types of
                     government (democracy, monarchy...), morals surrounding slavery, and whether fate is a fatality.<br>(also sinbad solos any of your favorite characters)</p>
-                <img src="Sinbad_anime.png" alt="Magi characters" style="max-width: 30%; height: auto; border-radius: 8px; margin-top: 10px;">
+                <img src="Sinbad_anime.png" alt="Magi characters" style="width: 200px; height: auto; border-radius: 8px; margin-top: 10px;">
             </section>
         </div>
     </div>
@@ -278,6 +333,31 @@
                 desc.style.display = "none"; // Hide the description
             }
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector(".heptagon-container");
+            const emojis = ["😎", "🤑", "🥰", "🦥", "😡", "🍔", "🥸"]; // 7 points
+            const numPoints = emojis.length;
+
+            const centerX = container.offsetWidth / 2 - 3;
+            const centerY = container.offsetHeight / 2 + 7;
+            const radius = container.offsetWidth * 0.447; // Adjust radius if needed
+
+            emojis.forEach((emoji, index) => {
+                const angle = (2 * Math.PI * index) / numPoints + 0.21; // Divide 360° into 7 parts
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+
+                const span = document.createElement("span");
+                span.classList.add("emoji");
+                span.style.left = `${x}px`;
+                span.style.top = `${y}px`;
+                span.innerText = emoji;
+
+                container.appendChild(span);
+            });
+        });
     </script>
 
 </body>
