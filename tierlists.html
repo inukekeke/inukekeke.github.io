@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Tier Lists</title>
     <style>
         body {
@@ -12,38 +13,107 @@
             text-align: center;
             padding: 20px;
         }
+
         h1 {
-            color: #cda0e2;
+            color: #e2a0ae;
         }
+
         a {
-            color: #cda0e2;
+            color: #e2a0ae;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
-        .tierlist {
-            width: 80%;
+
+        .clickable {
+            cursor: pointer;
+            color: #f1ede8;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .clickable:hover {
+            color: #a0e2e2;
+        }
+
+        .tierlist-section {
+            margin: 30px auto;
             max-width: 800px;
-            margin: 20px auto;
+            text-align: left;
+        }
+
+        .description {
+            display: none;
+            margin-top: 10px;
+            color: #b0b0b0;
+        }
+
+        .tier-image {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 100%;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
         }
     </style>
 </head>
+
 <body>
     <h1>My Tier Lists</h1>
     <p><a href="../index.html">⬅ Back to main page</a></p>
 
-    <h2>🎮 Video Game Tier List</h2>
-    <img src="../images/games-tierlist.png" alt="Video Game Tier List" class="tierlist">
 
-    <h2>🍔 Fast Food Tier List</h2>
-    <img src="../images/fastfood-tierlist.png" alt="Fast Food Tier List" class="tierlist">
+    <div class="tierlist-section">
+        <h2 onclick="toggleDescription('gotchar-tier')" class="clickable">👑 Game of Thrones characters</h2>
+        <div id="gotchar-tier" class="description">
+            <ul>
+                <li>Tier list of the characters of the serie Game of Thrones ranked by how much I like them, how good of a person they are.</li>
+                <li>Characters are NOT ordered within each tier.</li>
+                <li>Tywin is missing for some reason, he would obviously be in "S tier".</li>
+            </ul>
+            <img src="/tierlists/imgs/gotcharacters.png" alt="gotchar Tier List" class="tier-image" />
+        </div>
+    </div>
 
-    <h2>🎵 Music Artists Tier List</h2>
-    <img src="../images/music-tierlist.png" alt="Music Artists Tier List" class="tierlist">
+    <div class="tierlist-section">
+        <h2 onclick="toggleDescription('ftpower-tier')" class="clickable">🧚🏼‍♀️ Fairy Tail Characters</h2>
+        <div id="ftpower-tier" class="description">
+            <ul>
+                <li>Tier list of the characters of the manga Fairy Tail ranked by how powerful they are.</li>
+                <li>Characters ARE ordered within each tier, except for those in the 'GODLIKE POWER' tier, where all of them are essentially unkillable and possess infinite power.</li>
+                <li>This is not based on Mashima's poor writing skills, deus ex machina, and other such elements. For example, August DOES possess all forms of magic in the world, not just a generic copy magic.</li>
+            </ul>
+            <img src="/tierlists/imgs/fairy_tail_tierlist.png" alt="ftpower Tier List" class="tier-image" />
+        </div>
+    </div>
 
-    <p><a href="../index.html">⬅ Back to main page</a></p>
+    <div class="tierlist-section">
+        <h2 onclick="toggleDescription('months-tier')" class="clickable">🗓️ Months</h2>
+        <div id="months-tier" class="description">
+            <ul>
+                <li>Tier list of the months of the year ranked by how good they feel.</li>
+                <li>Months ARE ordered within each tier.</li>
+                <li>My birthday is in January. I love winter, and hate summer for the heat, insects, and everything that comes with it.</li>
+            </ul>
+            <img src="/tierlists/imgs/months.png" alt="months-tier" class="tier-image" />
+        </div>
+    </div>
+
+    <p><br><a href="../index.html">⬅ Back to main page</a></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const descriptions = document.querySelectorAll(".description");
+            descriptions.forEach(desc => desc.style.display = "none");
+        });
+
+        function toggleDescription(id) {
+            const desc = document.getElementById(id);
+            desc.style.display = (desc.style.display === "none" || desc.style.display === "") ? "block" : "none";
+        }
+    </script>
 </body>
+
 </html>
