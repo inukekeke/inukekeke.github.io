@@ -263,7 +263,7 @@
         </div>
         <div class="column">
             <section>
-                <h2>🎥 My Top 10 favorite movies of all time :p</h2>
+                <h2>🎥 My Top 10 favorite movies of all time</h2>
                 <ol>
                     <li onclick="toggleDescription('desc1')" class="clickable">Fight Club (1999) 🥇</li>
                     <p id="desc1" class="description">Obviously number one on many lists and widely regarded as one of the greatest movies of all time, this is my personal favorite out of all the
@@ -302,6 +302,26 @@
                 </ol>
             </section>
             <section>
+                <h2>💃 Artists and albums that have forged me 💿</h2>
+                <ul>
+                    <li>Lana Del Rey <span class="small-text">(most obvious one)</span> : <b>Born To Die</b> (2011), <b>Ultraviolence</b> (2014), <b>Normal Fucking Rockwell!</b> (2019), <b>Did You Know That There's a Tunnel Under Ocean Blvd</b> (2023)</li>
+                    <br><li>The Pretty Reckless : <b>Light Me Up</b> (2010)</li>
+                    <br><li>Clairo</li>
+                    <br><li>Gorillaz : <b>Demon Days</b> (2005)</li>
+                    <br><li>Guns N' Roses : <b>Use Your Illusion II</b> (1991)</li>
+                    <br><li>AC/DC</li>
+                    <br><li>Powerwolf</li>
+                    <br><li>Dua Lipa : <b>Future Nostaliga</b> (2020)</li>
+                    <br><li>Katy Perry : <b>Teenage Dream</b> (2010)</li>
+                    <br><li>MARINA : <b>Electra Heart</b> (2012)</li>
+                    <br><li>Melanie Martinez : <b>Cry Baby</b> (2015)</li>
+                    <br><li>Damso : <b>Ipseite</b> (2017), <b>Lithopedion</b> (2018)</li>
+                    <br><li>Orelsan : <b>Le Chant des sirenes</b> (2011), <b>La fete est finie - EPILOGUE</b> (2018)</li>
+                    <br><li>Casseurs Flowters : <b>Orelsan et Gringe sont les Casseurs Flowters</b> (2013), <b>Comment c'est loin</b> (2015)</li>
+                    <br><li>Arctic Monkeys : <b>AM</b> (2013)</li>
+                </ul>
+            </section>
+            <section>
                 <h2>🟥🟧🟨 Tier lists 🟩🟦🟪</h2>
                 <p>I'm addicted to making tier lists.. Below are some exemples in mind but make sure to click <a href="tierlists.html" class="clickable2">here</a> to see all of them 👍</p>
                 <u1>
@@ -309,21 +329,6 @@
                     <li>Alphabet letters</li>
                     <li>Most powerful characters in Fairy Tail</li>
                 </u1>
-            </section>
-            <section>
-                <h2>Interest and skill in different subjects :</h2>
-                <p>just a list of subjects, with the first number representing my interest/love for each subject and the second number indicating how good I am at it</p>
-                <ul>
-                    <li>Mathematics: 100 - 80</li>
-                    <li>Philosophy: 100 - 70</li>
-                    <li>Music: 90 - 70</li>
-                    <li>Science: 90 - 20</li>
-                    <li>Languages (english, french, russian, norwegian): 80 - 90</li>
-                    <li>Vexillology: 80 - 70</li>
-                    <li>History: 70 - 60</li>
-                    <li>Computer Science: 60 - 80</li>
-                    <li>Geography: 30 - 40</li>
-                </ul>
             </section>
             <section>
                 <h2>I LOVE MAGI</h2>
@@ -355,31 +360,6 @@
                 desc.style.display = "none"; // Hide the description
             }
         }
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const container = document.querySelector(".heptagon-container");
-            const emojis = ["😎", "🤑", "🥰", "🦥", "😡", "🍔", "🥸"]; // 7 points
-            const numPoints = emojis.length;
-
-            const centerX = container.offsetWidth / 2 - 3;
-            const centerY = container.offsetHeight / 2 + 7;
-            const radius = container.offsetWidth * 0.447; // Adjust radius if needed
-
-            emojis.forEach((emoji, index) => {
-                const angle = (2 * Math.PI * index) / numPoints + 0.21; // Divide 360° into 7 parts
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle);
-
-                const span = document.createElement("span");
-                span.classList.add("emoji");
-                span.style.left = `${x}px`;
-                span.style.top = `${y}px`;
-                span.innerText = emoji;
-
-                container.appendChild(span);
-            });
-        });
     </script>
 
 </body>
