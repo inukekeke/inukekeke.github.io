@@ -1,368 +1,614 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="images/friiiites.png" />
-    <title>My Bio</title>
+    <title>FULGURANCE | Guide des Éclairs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e1e1e;
-            /* Dark background for night mode */
-            color: #f1ede8;
-            /* Light text color */
+        /* DESIGN SYSTEM */
+        :root {
+            --bg-color: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --text-main: #2C2C2C;
+            --text-light: #666666;
+            --accent-choco: #4A3B32;
+            --border-color: #EAEAEA;
+
+            /* Grading Colors */
+            --grade-gold: #D4AF37;
+            --grade-silver: #C0C0C0;
+            --grade-bronze: #CD7F32;
+            --grade-black: #1a1a1a;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
         header {
-            background: #7b4c91;
-            /* Purple color for header */
-            color: white;
-            padding: 10px 20px;
             text-align: center;
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(to bottom, #fff 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         h1 {
-            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-choco);
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.5px;
         }
 
-        .about-me {
-            text-align: center;
-            /* Center text */
-            margin: 10px auto;
-            /* Center and add space */
-            font-size: 1.1em;
-            /* Slightly larger font size */
-            color: #cda0e2;
-            /* Color to match section headers */
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* FILTRE ET TRI */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+
+        .controls-container label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-right: 10px;
+        }
+
+        .controls-container select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+
+        /* GRID LAYOUT */
         .container {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* CARD DESIGN */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
-            /* Use flexbox layout */
-            margin: 20px;
-            /* Margin for the container */
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
         }
 
-        .column {
-            flex: 1;
-            /* Each column takes equal space */
-            margin-right: 20px;
-            /* Space between columns */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .column:last-child {
-            margin-right: 0;
-            /* Remove margin from the last column */
+        /* IMAGE ÉCLAIR */
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            background-color: var(--accent-choco);
         }
 
-        section {
-            padding: 20px;
-            background: #2a2a2a;
-            /* Slightly lighter background for sections */
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* TCG SLAB HEADER */
+        .slab-header {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #ddd;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-family: 'Chivo Mono', monospace;
+            position: absolute;
+            /* Place au-dessus de l'image */
+            top: 0;
+            right: 0;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+            z-index: 10;
+        }
+
+        /* The Main Grade Box */
+        .slab-grade-box {
+            background: var(--accent-choco);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        /* BLACK LABEL STYLE */
+        .black-label {
+            background-color: var(--grade-black) !important;
+            color: var(--grade-gold) !important;
+            border: 1px solid var(--grade-gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+            /* Gold Glow */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Shimmer effect for Black Labels */
+        .black-label::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent-choco);
+            margin: 0 0 0.2rem 0;
+        }
+
+        .place-address {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--text-light);
+            align-self: flex-start;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .place-address:hover {
+            color: var(--accent-choco);
+            border-bottom-color: var(--accent-choco);
+        }
+
+        /* --- SUB-GRADES GRID --- */
+        .sub-grades-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            background: #FAFAFA;
+            padding: 8px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            /* Space between boxes vertically */
+            border: 1px solid #eee;
         }
 
-        h2 {
-            color: #cda0e2;
-            /* Pastel purple for section headers */
+        .sub-grade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6px 2px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .sg-label {
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .sg-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        /* Black Label overrides for sub-grades */
+        .sub-grade.black-label {
+            background-color: var(--grade-black);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .sub-grade.black-label .sg-label {
+            color: #aaa;
+        }
+
+        .sub-grade.black-label .sg-value {
+            color: var(--grade-gold);
+        }
+
+        /* REVIEW SECTION */
+        .review-section {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 1rem;
+        }
+
+        /* DESCRIPTION DÉROULANTE */
+        .review-text-container {
+            max-height: 50px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.4s ease;
+        }
+
+        .review-text-container.expanded {
+            max-height: 500px;
+        }
+
+        .review-text-container:not(.expanded)::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+
+        .read-more-button {
+            background: none;
+            border: none;
+            color: var(--accent-choco);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: block;
+            text-align: left;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin: 0;
+            font-style: italic;
         }
 
         footer {
             text-align: center;
-            margin: 20px;
-            color: #b0b0b0;
-            /* Lighter grey for footer text */
-        }
-
-        a {
-            text-decoration: none;
-            /* Remove underline from links */
-            color: inherit;
-            /* Make link color inherit from parent element */
-        }
-
-        .clickable {
-            cursor: pointer;
-            /* Makes it look clickable */
-            color: #f1ede8;
-            /* Gives a highlight color */
-            font-weight: bold;
-            transition: color 0.3s ease-in-out;
-            /* Smooth transition effect */
-        }
-
-        .clickable2 {
-            cursor: pointer;
-            /* Makes it look clickable */
-            color: #8eb5ff;
-            /* Gives a highlight color */
-            transition: color 0.3s ease-in-out;
-            /* Smooth transition effect */
-        }
-
-        .clickable2:hover {
-            color: #506ea5;
-            /* Changes color on hover */
-        }
-
-        .clickable:hover {
-            color: #facb30;
-            /* Changes color on hover */
-        }
-
-        .description {
-            display: none;
-            /* Keeps descriptions hidden by default */
-            font-style: italic;
-            margin-left: 20px;
-            color: #b0b0b0;
-            /* Slightly faded color for contrast */
-        }
-
-        .small-text {
-            font-size: 0.9em;
-            /* Makes the text slightly smaller */
-            font-style: italic;
-            /* Optional: Makes it italic for a softer look */
-        }
-
-        .striked-text {
-            text-decoration: line-through;
-            /* Initially strike-through the text */
-            transition: text-decoration 0.3s ease;
-            /* Smooth transition */
-        }
-
-        .striked-text:hover {
-            text-decoration: none;
-            /* Remove strike-through on hover */
-        }
-
-        .heptagon-container {
-            position: relative;
-            width: 400px;
-            /* Adjust this based on your image */
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .heptagon {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .emoji {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            /* Adjust size of emojis */
-        }
-
-        .not-centered {
-            text-align: left;
+            padding: 4rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
         }
 
         .legend {
-            display: none;
-            position: absolute;
-            bottom: -25px;
-            font-size: 14px;
-            white-space: nowrap;
+            text-align: center;
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
         }
 
-        .sins-image:hover~.legend {
-            display: block;
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-container {
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <header>
-        <h1>Stuff I like/wanna share :)</h1>
+        <h1>FULGURANCE</h1>
+        <p class="subtitle">Guide des Éclairs de Bretagne, par Edgar</p>
+        <div class="legend">
+            S: Saveurs &nbsp;|&nbsp; T: Texture &nbsp;|&nbsp; A: Aspect &nbsp;|&nbsp; R: Rapport
+        </div>
     </header>
 
-    <div class="about-me">
-        <h2>About Me</h2>
-        <p>Not that anyone cares, but I'm Inuke <i>(pronounced "ee-noo-kay", NOT "I nuke")</i>. I'm a 21-year-old
-            student studying computer science, and I love a lot of varied things. Hence, this page exists.</p>
+    <div class="controls-container">
+        <label for="sort-method">Trier par :</label>
+        <select id="sort-method" onchange="renderPatisseries(database)">
+            <option value="recent">Récemment ajouté (Défaut)</option>
+            <option value="highest">Meilleure Note (Décroissant)</option>
+            <option value="lowest">Moins Bonne Note (Croissant)</option>
+        </select>
     </div>
 
-    <div class="container">
-        <div class="column">
-            <section>
-                <h2>Personnal Songs <u>Hall of Fame</u> 🔥</h2>
-                <ul>
-                    <li>Venice Bitch - Lana Del Rey<a href="https://www.youtube.com/watch?v=Izc3W3yOW0M" target="_blank">💿</a></li>
-                    <li>The greatest - Lana Del Rey<a href="https://www.youtube.com/watch?v=Ndo8r_Hg_lg" target="_blank">💿</a></li>
-                    <li>Bohemian Rhapsody - Queen<a href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank">💿</a></li>
-                    <li>everything i wanted - Billie Eilish<a href="https://www.youtube.com/watch?v=EgBJmlPo8Xw" target="_blank">💿</a></li>
-                    <li>Let It Happen - Tame Impala<a href="https://www.youtube.com/watch?v=NMRhx71bGo4" target="_blank">💿</a></li>
-                    <li>Estranged - Guns N' Roses<a href="https://www.youtube.com/watch?v=8VgRL8Htv7k" target="_blank">💿</a></li>
-                    <li>14 Years - Guns N' Roses<a href="https://www.youtube.com/watch?v=Cvwod3GWgqk" target="_blank">💿</a></li>
-                    <li>Civil War - Guns N' Roses<a href="https://www.youtube.com/watch?v=-ucDiz3GYrg" target="_blank">💿</a></li>
-                    <li>Wind of Change - Scorpions<a href="https://www.youtube.com/watch?v=n4RjJKxsamQ" target="_blank">💿</a></li>
-                    <li>Stairway To Heaven - Led Zeppelin<a href="https://www.youtube.com/watch?v=QkF3oxziUI4" target="_blank">💿</a></li>
-                    <li>Lose Yourself - Eminem<a href="https://youtu.be/xFYQQPAOz7Y?feature=shared" target="_blank">💿</a></li>
-                    <li>Stan - Eminem<a href="https://www.youtube.com/watch?v=7u1Jj6aRIec" target="_blank">💿</a></li>
-                    <li>Gyöngyhajú lány - Omega<a href="https://www.youtube.com/watch?v=CGt-rTDkMcM" target="_blank">💿</a></li>
-                    <li>La nuit je mens - Alain Bashung<a href="https://youtu.be/0MYN8mAEKUo?si=PKTItWv3_2v2nJqp" target="_blank">💿</a></li>
-                    <li>everything i wanted - Billie Eilish<a href="https://youtu.be/EgBJmlPo8Xw?si=TcnOJvwHGruMWSDw" target="_blank">💿</a></li>
-                </ul>
-                <span class="small-text">PS1: this list may change or receive additions over time :) <br>PS2: these are not necessarily my favorite songs, but rather songs that I believe to be
-                    unbelievably perfect.</span>
-                <span class="small-text striked-text"><br>PS3: a pretty good gaming console :D</span>
-            </section>
+    <main class="container" id="app">
 
-            <section>
-                <h2>🏆 My Gaming Accomplishments 🎮</h2>
-                <p><b>CS:GO & CS2</b> <i>(7000~ hours)</i></p>
-                <ul>
-                    <li>Global Elite in both CS:GO competitive and wingman.</li>
-                    <li>19,714 Elo in CS2 Premier.</li>
-                    <li>Best game of my life: 55-4-13 K/A/D with a score of 139, including 1 ace and 5 4K's. The game was won 16-12.</li>
-                    <li>Opened 3 knives in 14 cases. 2nd case being a FN StatTrack Marble Fade Butterfly knife. 4th one being a Case Hardened Ursus knife. 14th one being a Vanilla Skeleton knife.</li>
-                </ul>
-                <p><b>Smite</b> <i>(4000~ hours)</i></p>
-                <ul>
-                    <li>61 pentakills, 163 quadrakills, 79 godlikes.</li>
-                    <li>A decakill with Hou Yi and a septakill with Neith.</li>
-                    <li>295/319 (92%) achievements, seven of which are the rarest in the game.</li>
-                    <li>"Final Form": Kill 5 enemy with a single ability.</li>
-                    <li>Owner of the Curious Courier skin, which is only owned by 0.07% of players.</li>
-                </ul>
-                <p><b>Wynncraft</b> <i>(1,853 hours)</i></p>
-                <ul>
-                    <li>Former Strategist of ANO.</li>
-                    <li>Top 100 raid player.</li>
-                    <li>Top 350 war player.</li>
-                    <li>2nd place in the 19th season's Ocean Trials.</li>
-                </ul>
-                <p><b>Mobile Cookie Clicker</b> <i>(Legacy started 1734 days ago)</i></p>
-                <ul>
-                    <li>#5 on the competitive leaderboard.</li>
-                    <li>128.68*10<sup>63</sup> (128.68 vigintillion) cookies baked all time.</li>
-                    <li>Rarest combos done : ef+df+bs (0.00029%), df+ef+f (0.00237%), df+cf (0.0121%)</li>
-                </ul>
-                <p><b>Geometry Dash</b> <i>(500~ hours)</i></p>
-                <ul>
-                    <li>73 demons completed.</li>
-                    <li>Hardest completed level is "B" by Motleyorc.</li>
-                    <li>51% completed on "Nine Circles" by Zobros, as well as 62% completed on "Hypnotic Travel" by Alkatraz.</li>
-                </ul>
-            </section>
-
-        </div>
-        <div class="column">
-            <section>
-                <h2>🎥 My Top 10 favorite movies of all time</h2>
-                <ol>
-                    <li onclick="toggleDescription('desc1')" class="clickable">Fight Club (1999) 🥇</li>
-                    <p id="desc1" class="description">Obviously number one on many lists and widely regarded as one of the greatest movies of all time, this is my personal favorite out of all the
-                        movies I’ve watched. Despite watching it for the first time relatively late and knowing the main plot twist beforehand, I was still unprepared, and the reveal caught me off
-                        guard, as well as the final act set to the music of the Pixies. A mind-bending movie fully deserving of this first place.</p>
-                    <li onclick="toggleDescription('desc2')" class="clickable">12 Angry Men (1957) 🥈</li>
-                    <p id="desc2" class="description">I was (happily) surprised to see this movie rated this high by the public a long time after watching it for the first time. I personally watched
-                        it in high school with a top-notch English literature teacher who shared some really good movies and books with us. In short, this movie changed my life and my way of thinking.
-                        It is so intense, with many dramatic key moments, and watching this movie is such an immersive experience; you really get to be with the twelve jurors all movie long, and at
-                        one moment or another, you’re eventually going to be convinced by juror #8 (wonderfully played by Henry Fonda). 10/10 would recommend for EVERYONE to see.</p>
-                    <li onclick="toggleDescription('desc8')" class="clickable">Your Name (2016) 🥉</li>
-                    <p id="desc8" class="description">INSANE. I got told to watch it so many times, and after years I finally decided to do it, and now I'm so grateful and wondering how I could live
-                        without seeing this masterpiece... Just like the other movies from this list, the key is the constant build-up of tension and release, with a lot of very happy and bright moment
-                        followed by shattering revelations, and on and on. The story is also pretty hard to understand fully, but as the movie goes on you start picking up on clues and begin to grasp
-                        what it’s all really about. A truly fascinating movie with a very original plot and breathtaking animation, music, and a massive emotional impact.</p>
-                    <li onclick="toggleDescription('desc3')" class="clickable">Troy (2004)</li>
-                    <p id="desc3" class="description">Myeah… 2 hours and 43 minutes of Brad Pitt as Achilles in an epic adaptation of the Iliad and Posthomerica? Of course, I’m going to like it.
-                        Amazing acting from him, and despite the criticisms this movie has largely faced, it’s still a film I regularly watch and enjoy. Its placement on this list is purely personal,
-                        and I understand that some may not agree with it.</p>
-                    <li onclick="toggleDescription('desc4')" class="clickable">Inglourious Basterds (2009)</li>
-                    <p id="desc4" class="description">Christoph Waltz… What a performance from him... But not only him! This movie is a pure masterpiece in terms of tension, relief, tension, relief;
-                        it is so perfectly executed, and every scene is so intense. Tarantino has rightfully earned his reputation. Amazing performance from the French actress Mélanie Laurent as well.
-                    </p>
-                    <li onclick="toggleDescription('desc5')" class="clickable">Spirited Away (2001)</li>
-                    <p id="desc5" class="description">The only animated movie on this list (not anymore now that I watched "Your Name" lol), it’s my favorite Ghibli and a film that someone I really loved shared with me. Two hours of adventurous
-                        twists and turns, with lovely characters in Chihiro, Haku, No-Face, and Yubaba, along with all the subtexts and metaphors in this movie. In addition to that, just like the
-                        other Ghibli films, this movie doesn’t age with time; after 24 years it’s still artistically exquisite.</p>
-                    <li onclick="toggleDescription('desc6')" class="clickable">Back to the Future (1985)</li>
-                    <p id="desc6" class="description">meow meow</p>
-                    <li onclick="toggleDescription('desc7')" class="clickable">Astérix et Obélix : Mission Cléopâtre (2002)</li>
-                    <p id="desc7" class="description">meow meow</p>
-                    <li onclick="toggleDescription('desc10')" class="clickable">Logan (2017)</li>
-                    <p id="desc10" class="description">meow meow</p>
-                    <li onclick="toggleDescription('desc9')" class="clickable">Whiplash (2014)</li>
-                    <p id="desc9" class="description">meow meow</p>
-                </ol>
-            </section>
-            <section>
-                <h2>💃 Artists and albums that have forged me 💿</h2>
-                <ul>
-                    <li>Lana Del Rey <span class="small-text">(most obvious one)</span> : <b>Born To Die</b> (2011), <b>Ultraviolence</b> (2014), <b>Normal Fucking Rockwell!</b> (2019), <b>Did You Know That There's a Tunnel Under Ocean Blvd</b> (2023)</li>
-                    <br><li>The Pretty Reckless : <b>Light Me Up</b> (2010)</li>
-                    <br><li>Clairo</li>
-                    <br><li>Gorillaz : <b>Demon Days</b> (2005)</li>
-                    <br><li>Guns N' Roses : <b>Use Your Illusion II</b> (1991)</li>
-                    <br><li>AC/DC</li>
-                    <br><li>Powerwolf</li>
-                    <br><li>Dua Lipa : <b>Future Nostaliga</b> (2020)</li>
-                    <br><li>Katy Perry : <b>Teenage Dream</b> (2010)</li>
-                    <br><li>MARINA : <b>Electra Heart</b> (2012)</li>
-                    <br><li>Melanie Martinez : <b>Cry Baby</b> (2015)</li>
-                    <br><li>Damso : <b>Ipseite</b> (2017), <b>Lithopedion</b> (2018)</li>
-                    <br><li>Orelsan : <b>Le Chant des sirenes</b> (2011), <b>La fete est finie - EPILOGUE</b> (2018)</li>
-                    <br><li>Casseurs Flowters : <b>Orelsan et Gringe sont les Casseurs Flowters</b> (2013), <b>Comment c'est loin</b> (2015)</li>
-                    <br><li>Arctic Monkeys : <b>AM</b> (2013)</li>
-                </ul>
-            </section>
-            <section>
-                <h2>🟥🟧🟨 Tier lists 🟩🟦🟪</h2>
-                <p>I'm addicted to making tier lists.. Below are some exemples in mind but make sure to click <a href="tierlists.html" class="clickable2">here</a> to see all of them 👍</p>
-                <u1>
-                    <li>Fruits</li>
-                    <li>Alphabet letters</li>
-                    <li>Most powerful characters in Fairy Tail</li>
-                </u1>
-            </section>
-            <section>
-                <h2>I LOVE MAGI</h2>
-                <p>PLEASE read (or watch) Magi. It's my all-time favorite manga by far. It has amazing characters, like <i>(oh god this is going to be long)</i> Aladdin, Alibaba, Morgiana, Sinbad,
-                    Ja'far, Masrur, Yamraiha, Hakuryuu, Kougyoku, Kouha, Kouen, Muu, Titus, Scheherazade, Cassim, Dunya, Yunan, Judar, Ithnan, Ugo, Arba, Solomon, Sheba, David, and many more. They all
-                    experience character development throughout the series; you will love them and hate them at least once (They're also ALL so hot 😳). It is a Shōnen but it deals with more serious
-                    topics, such as types of
-                    government (democracy, monarchy...), morals surrounding slavery, and whether fate is a fatality.<br>(also sinbad solos any of your favorite characters)</p>
-                <img src="images/Sinbad_anime.png" alt="Magi characters" style="width: 200px; height: auto; border-radius: 8px; margin-top: 10px;">
-            </section>
-        </div>
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; This site is forever a work in progress. Inuke. Made with 💜</p>
+        <p>Graded by EG • Hosted on GitHub</p>
     </footer>
-    <script>
-        // Ensure all descriptions are hidden when the page loads
-        document.addEventListener("DOMContentLoaded", function () {
-            let descriptions = document.querySelectorAll(".description");
-            descriptions.forEach(desc => desc.style.display = "none");
-        });
 
-        function toggleDescription(id) {
-            var desc = document.getElementById(id);
-            if (desc.style.display === "none" || desc.style.display === "") {
-                desc.style.display = "block"; // Show the description
+    <script>
+
+        // Helper function to safely parse score for calculation
+        function getNumericScore(score) {
+            if (typeof score === 'string') {
+                if (score.endsWith('*')) {
+                    return 5;
+                }
+                return parseFloat(score);
+            }
+            return score;
+        }
+
+        // --- 1. BASE DE DONNÉES (AJOUT DU CHAMP imageURL) ---
+        const initialDatabase = [
+            {
+                name: "Maison Bouvier",
+                address: "3 Rue Toullier, 35000 Rennes",
+                imageURL: "./img/bouvier.jpg",
+                scores: { s: "4.5", t: "5*", a: "4.5", r: "4.5" },
+                review: "Une prouesse technique au niveau de la texture : glaçage impeccable, crème onctueuse aux notes croustillantes, qui mérite une note exceptionnelle. Malgré un glaçage réussi, la saveur de la crème pâtissière manque de puissance. L'imposante présentation est séduisante, même si l'absence de motif signature coûte cher. 3.90€ est tout à fait acceptable."
+            },
+            {
+                name: "Maison Lorand",
+                address: "16 Rue Vasselot, 35000 Rennes",
+                imageURL: "./img/lorand.jpg",
+                scores: { s: "3", t: "2", a: "3.5*", r: "3" },
+                review: "Visuellement agréable, cet éclair offre une saveur honnête, sans surprise. Cependant, la Texture est en deçà des attentes, avec une crème liquide et une pâte à choux qui manque de fraîcheur. À 3.80€, le tarif nous semble élevé pour la qualité proposée."
+            },
+            {
+                name: "Thierry bouvier",
+                address: "21 Rue de la Motte Picquet, 35000 Rennes",
+                imageURL: "./img/thierry bouvier.jpg",
+                scores: { s: "3.5", t: "3.5", a: "4", r: "4" },
+                review: "Un modèle de sobriété. L'Esthétique est travaillée et le rendu mat est irréprochable, malgré une trop grande simplicité du design. La Saveur du chocolat est trop peu affirmée, et la crème, hélas trop liquide, ne tient pas en bouche. Un prix juste à 3.50€ pour cette exécution honnête."
+            },
+            {
+                name: "Yvan Chevalier",
+                address: "9 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/chevalier.jpg",
+                scores: { s: "5", t: "4.5", a: "5", r: "5*" },
+                review: "Un plaisir pour les yeux à la saveur exquise. La crème pâtissière est exécutée avec une précision rare. Malgré une texture proche de la perfection, un très léger excès de crème empêche d'atteindre l'idéal. Ce petit chef-d'œuvre est un véritable cadeau à 3.70€."
+            },
+            {
+                name: "Laurent Le Daniel",
+                address: "19 Rue Jules Simon, 35000 Rennes",
+                imageURL: "./img/ledaniel.jpg",
+                scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
+                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments est presque parfait, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4.50€ est jugé bien trop onéreux cependant."
+            },
+            {
+                name: "Le fournil des Halles",
+                address: "24 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/halles.jpg",
+                scores: { s: "4.5", t: "5*", a: "3.5", r: "5" },
+                review: "Une virtuosité technique qui mérite une note exceptionelle : l'onctuosité et le craquant sont parfaitement maîtrisés. Le palais est séduit par la qualité des ingrédients, bien que l'arôme soit légèrement trop sucré. Visuellement, l'éclair est simple, soigné, mais manque peut-être de caractère. Le rapport est imbattable à 3.00€."
+            },
+            {
+                name: "Antoine Le Nôtre",
+                address: "4 Rue Bario, 22400 Lamballe-Armor",
+                imageURL: "./img/lenotre2.jpg",
+                scores: { s: "4", t: "4.5", a: "4.5", r: "4" },
+                review: "Un design original mais moins mémorable que par le passé, qui laisse place à une texture intéressante grâce à ses copeaux craquants. Une pâte à choux dont la densité masque parfois la finesse de la crème, tandis que l'arôme de cacao gagnerait à être plus percutant. À 4.00€, le rapport entre plaisir et prix est respecté."
+            }
+        ].map((item, index) => ({ ...item, insertionOrder: index })); // Ajout d'un index d'insertion
+
+        // Copie de la base de données initiale pour les opérations de tri
+        let database = [...initialDatabase];
+
+
+        // --- 2. FONCTION POUR TRIER LA BASE DE DONNÉES ---
+        function sortDatabase(data, sortMethod) {
+            // Cloner pour ne pas modifier l'original
+            let sortedData = [...data];
+
+            switch (sortMethod) {
+                case 'highest':
+                    // Tri par note moyenne décroissante
+                    sortedData.sort((a, b) => {
+                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
+                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
+                        return avgB - avgA; // Décroissant
+                    });
+                    break;
+                case 'lowest':
+                    // Tri par note moyenne croissante
+                    sortedData.sort((a, b) => {
+                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
+                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
+                        return avgA - avgB; // Croissant
+                    });
+                    break;
+                case 'recent':
+                default:
+                    // Tri par ordre d'insertion (du plus récent au plus ancien, en inversant l'ordre initial)
+                    sortedData.sort((a, b) => b.insertionOrder - a.insertionOrder);
+                    break;
+            }
+            return sortedData;
+        }
+
+        // --- 3. FONCTION DE RENDU PRINCIPALE ---
+        const app = document.getElementById('app');
+
+        function renderPatisseries(data) {
+            const sortMethod = document.getElementById('sort-method').value;
+            const sortedData = sortDatabase(data, sortMethod);
+            app.innerHTML = ''; // Nettoyer la liste avant de la remplir
+
+            sortedData.forEach((item) => {
+                // 1. Calculate Average
+                const total = getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r);
+                const average = (total / 4).toFixed(1);
+
+                // 2. Map Link
+                const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+
+                // 3. MAIN GRADE COLOR LOGIC
+                const allExceptional = (
+                    item.scores.s === "5*" &&
+                    item.scores.t === "5*" &&
+                    item.scores.a === "5*" &&
+                    item.scores.r === "5*"
+                );
+
+                let gradeClass = "";
+                let gradeColor = "#4A3B32";
+
+                if (allExceptional) {
+                    gradeClass = "black-label";
+                } else if (average >= 4.5) {
+                    gradeColor = "#D4AF37"; // Gold
+                } else if (average >= 4.0) {
+                    gradeColor = "#C0C0C0"; // Silver
+                } else {
+                    gradeColor = "#CD7F32"; // Bronze
+                }
+
+                // 4. SUB-GRADE BUILDER (S, T, A, R)
+                const renderKeys = [
+                    { dataKey: 's', label: 'S' },
+                    { dataKey: 't', label: 'T' },
+                    { dataKey: 'a', label: 'A' },
+                    { dataKey: 'r', label: 'R' }
+                ];
+
+                let subGradesHTML = '<div class="sub-grades-container">';
+
+                renderKeys.forEach(k => {
+                    const val = item.scores[k.dataKey];
+                    const isExceptional = (val === "5*");
+                    const boxClass = isExceptional ? 'sub-grade black-label' : 'sub-grade';
+                    const displayVal = isExceptional ? '5★' : val;
+
+                    subGradesHTML += `
+                        <div class="${boxClass}">
+                            <span class="sg-label">${k.label}</span>
+                            <span class="sg-value">${displayVal}</span>
+                        </div>
+                    `;
+                });
+                subGradesHTML += '</div>';
+
+
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                card.innerHTML = `
+                    <div class="slab-header">
+                        <div class="slab-grade-box ${gradeClass}" style="background:${gradeColor}">
+                            ${average}
+                        </div>
+                    </div>
+
+                    <div class="card-image-container">
+                        <img src="${item.imageURL || 'https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE'}" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE+Image+introuvable';" 
+                             alt="Éclair de la pâtisserie ${item.name}">
+                    </div>
+                    
+                    <div class="card-body">
+                        <h2 class="place-name">${item.name}</h2>
+                        <a href="${mapsLink}" target="_blank" class="place-address">📍 ${item.address}</a>
+
+                        ${subGradesHTML}
+
+                        <div class="review-section">
+                            <div class="review-text-container" id="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}">
+                                <p class="review-text">"${item.review}"</p>
+                            </div>
+                            <button class="read-more-button" data-target="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}" onclick="toggleReview(this)">Lire la suite...</button>
+                        </div>
+                    </div>
+                `;
+                app.appendChild(card);
+            });
+        }
+
+        // --- 4. FONCTION POUR DÉROULER LA DESCRIPTION ---
+        function toggleReview(button) {
+            const targetId = button.getAttribute('data-target');
+            const container = document.getElementById(targetId);
+
+            if (container.classList.contains('expanded')) {
+                container.classList.remove('expanded');
+                button.textContent = 'Lire la suite...';
             } else {
-                desc.style.display = "none"; // Hide the description
+                container.classList.add('expanded');
+                button.textContent = 'Réduire';
             }
         }
-    </script>
 
+        // Lance le rendu au chargement initial (tri par Récemment ajouté)
+        window.onload = function () {
+            renderPatisseries(database);
+        }
+    </script>
 </body>
 
 </html>
